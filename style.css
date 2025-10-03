@@ -68,3 +68,43 @@ main {
   color: #fff;
 }
 #btnClear:hover { background-color: #991b1b; }
+
+#btnChangeTitle {
+  background-color: #dc2626;
+  border-color: #991b1b;
+  color: #fff;
+}
+
+#btnChangeTitle:hover {
+  background-color: #991b1b;
+}
+
+#btnChangeTextColor {
+  background-color: #78350f;
+  border-color: #451a03;
+  color: #fff;
+}
+
+#btnChangeTextColor:hover {
+  background-color: #451a03;
+}
+
+#btnChangeBgColor {
+  background-color: #d97706;
+  border-color: #b45309;
+  color: #fff;
+}
+
+#btnChangeBgColor:hover {
+  background-color: #b45309;
+}
+
+#btnDouble {
+  background-color: #b45309;
+  border-color: #9a3412;
+  color: #fff;
+}
+
+#btnDouble:hover {
+  background-color: #9a3412;
+}

@@ -12,22 +12,17 @@ function render (html) {
 */
 function greet () {
   // TODO: Write your code here
+
+  const name = prompt("What is your name?");
+  if(!name.trim()) {
+    render('<h1>Please insert a valid name.</h1>')
+    return 
+  }
+  render(`<p>Hello, ${name}. Nice to meet you!</p>`)
 }
 
 /* 
-  Function 2 — averageNumbers()
-  ------------------------------
-  - Prompt the user for a list of numbers separated by commas
-  - Split the input into an array, turn into numbers
-  - Calculate the average
-  - Display the average AND the list of numbers
-*/
-function averageNumbers () {
-  // TODO: Write your code here
-}
-
-/* 
-  Function 3 — timeOfDay()
+  Function 2 — timeOfDay()
   -------------------------
   - Get the current hour from the computer clock
   - Decide whether it's morning, afternoon, or evening
@@ -35,10 +30,17 @@ function averageNumbers () {
 */
 function timeOfDay () {
   // TODO: Write your code here
+
+  const h = new Date().getHours()
+  let msg = ''
+  if(h<12) msg = 'Good Morning!'
+  else if(h<18) msg = 'Good Afternoon!'
+  else msg = 'Good Evening!'
+  render(`<p>${msg}</p>`)
 }
 
 /* 
-  Function 4 — randomBetween()
+  Function 3 — randomBetween()
   -----------------------------
   - Prompt the user for a minimum and maximum number
   - Generate a random number between them
@@ -47,24 +49,46 @@ function timeOfDay () {
 */
 function randomBetween () {
   // TODO: Write your code here
+
+  const min = parseInt(prompt('Enter minimum number:'))
+  const max = parseInt(prompt('Enter maximum number:'))
+
+  if(isNaN(min) || isNaN(max)) {
+    render('<h1>Please insert a valid number.</h1>')
+    return
+  }
+
+  if(min >= max) {
+    render('<h1>Make sure the minimum number is less than the maximum.</h1>')
+    return
+  }
+
+  const rndNum = Math.floor(Math.random()*(max-min+1)+min)
+  render(`A random number between ${min} and ${max} is: ${rndNum}`)
 }
 
 /* 
-  Function 5 — clearOutput()
+  Function 4 — clearOutput()
   ---------------------------
   - Clear whatever is inside #out
   - Replace it with a placeholder message like "Output cleared."
 */
 function clearOutput () {
   // TODO: Write your code here
+
+  render('Output will appear here…')
 }
 
 // ---- Event listeners for the demo buttons ----
 document.getElementById('btnGreet').addEventListener('click', greet)
-document.getElementById('btnAvg').addEventListener('click', averageNumbers)
 document.getElementById('btnTime').addEventListener('click', timeOfDay)
 document.getElementById('btnRandom').addEventListener('click', randomBetween)
 document.getElementById('btnClear').addEventListener('click', clearOutput)
+
+document.getElementById('btnChangeTitle').addEventListener('click', greet)
+document.getElementById('btnChangeTextColor').addEventListener('click', timeOfDay)
+document.getElementById('btnChangeBgColor').addEventListener('click', randomBetween)
+document.getElementById('btnDouble').addEventListener('click', clearOutput)
 
 /* 
   ------------------------------------------
@@ -80,3 +104,4 @@ document.getElementById('btnClear').addEventListener('click', clearOutput)
   Write each function below, and don’t forget to connect each one 
   to a new button in index.html using addEventListener.
 */
+
