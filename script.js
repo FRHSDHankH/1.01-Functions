@@ -3,6 +3,10 @@ function render (html) {
   document.getElementById('out').innerHTML = html
 }
 
+const title = document.getElementById('title')
+const out = document.getElementById('out')
+let i = 0;
+
 /* 
   Function 1 — greet()
   ---------------------
@@ -77,6 +81,9 @@ function clearOutput () {
   // TODO: Write your code here
 
   render('Output will appear here…')
+  title.innerText = '🍂 JS Functions Demo'
+  out.style.color = 'black'
+  out.style.backgroundColor = '#f8f9fa'
 }
 
 // ---- Event listeners for the demo buttons ----
@@ -85,10 +92,10 @@ document.getElementById('btnTime').addEventListener('click', timeOfDay)
 document.getElementById('btnRandom').addEventListener('click', randomBetween)
 document.getElementById('btnClear').addEventListener('click', clearOutput)
 
-document.getElementById('btnChangeTitle').addEventListener('click', greet)
-document.getElementById('btnChangeTextColor').addEventListener('click', timeOfDay)
-document.getElementById('btnChangeBgColor').addEventListener('click', randomBetween)
-document.getElementById('btnDouble').addEventListener('click', clearOutput)
+document.getElementById('btnChangeTitle').addEventListener('click', changeTitle)
+document.getElementById('btnCycleColor').addEventListener('click', changeText)
+document.getElementById('btnBgColor').addEventListener('click', changeBg)
+document.getElementById('btnDouble').addEventListener('click', double)
 
 /* 
   ------------------------------------------
@@ -105,3 +112,45 @@ document.getElementById('btnDouble').addEventListener('click', clearOutput)
   to a new button in index.html using addEventListener.
 */
 
+function changeTitle() {
+  const newTitle = prompt('Change the title to:')
+
+  if(!newTitle.trim()) {
+    render('<h1>Please insert a valid title.</h1>')
+    return 
+  }
+  title.innerText = newTitle
+  render('Output will appear here…')
+}
+
+function changeText() {
+  const colors = ['black', 'red', 'orange', 'yellow', 'green', 'blue', 'purple', 'white']
+  if(i === colors.length - 1) {
+    i = 0
+  } else {
+    i++
+  }
+  out.style.color = colors[i]
+}
+
+function changeBg() {
+  const hexArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
+  const random1 = hexArray[Math.floor(Math.random() * hexArray.length)]
+  const random2 = hexArray[Math.floor(Math.random() * hexArray.length)]
+  const random3 = hexArray[Math.floor(Math.random() * hexArray.length)]
+  const random4 = hexArray[Math.floor(Math.random() * hexArray.length)]
+  const random5 = hexArray[Math.floor(Math.random() * hexArray.length)]
+  const random6 = hexArray[Math.floor(Math.random() * hexArray.length)]
+  let hex = `#${random1}${random2}${random3}${random4}${random5}${random6}`
+  out.style.backgroundColor = hex
+}
+
+function double() {
+  const num = prompt('Insert a number:')
+  if(!num.trim() || isNaN(num)) {
+    render('<h1>Please insert a valid number</h1>')
+    return
+  }
+  const numDoubled = num * 2
+  render(`<p>Your number doubled is: ${numDoubled}</p>`)
+}
